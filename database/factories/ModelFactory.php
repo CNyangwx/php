@@ -12,28 +12,59 @@
  */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\User::class, function (Faker\Generator $faker) {
-    static $password;
+// $factory->define(App\User::class, function (Faker\Generator $faker) {
+//     static $password;
 
+//     return [
+//         'name' => $faker->name,
+//         'email' => $faker->unique()->safeEmail,
+//         'password' => $password ?: $password = bcrypt('123456'),
+//         'remember_token' => str_random(10),
+//     ];
+// });
+
+// $factory->define(App\Thread::class, function ($faker) {
+//     return [
+//         'user_id' => function () {
+//             return factory('App\User')->create()->id;
+//         },
+//         'title' => $faker->sentence,
+//         'body' => $faker->paragraph,
+//     ];
+// });
+
+// $factory->define(App\Reply::class, function ($faker) {
+//     return [
+//         'thread_id' => function () {
+//             return factory('App\Thread')->create()->id;
+//         },
+//         'user_id' => function () {
+//             return factory('App\User')->create()->id;
+//         },
+//         'body' => $faker->paragraph,
+//     ];
+// });
+
+$factory->define('App\User::class', function ($facker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('123456'),
+        'name' => $facker->name,
+        'email' => $facker->unique()->safeEmail,
+        'password' => bcrypt('123456'),
         'remember_token' => str_random(10),
     ];
 });
 
-$factory->define(App\Thread::class, function ($faker) {
+$factory->define('App\Thread::class', function ($facker) {
     return [
         'user_id' => function () {
             return factory('App\User')->create()->id;
         },
-        'title' => $faker->sentence,
-        'body' => $faker->paragraph,
+        'body' => $facker->paragraph,
+        'title' => $facker->sentence,
     ];
 });
 
-$factory->define(App\Reply::class, function ($faker) {
+$factory->define('App\Reply::class', function ($facker) {
     return [
         'thread_id' => function () {
             return factory('App\Thread')->create()->id;
@@ -41,6 +72,6 @@ $factory->define(App\Reply::class, function ($faker) {
         'user_id' => function () {
             return factory('App\User')->create()->id;
         },
-        'body' => $faker->paragraph,
+        'body' => $facker->paragraph,
     ];
 });
