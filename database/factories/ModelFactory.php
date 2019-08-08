@@ -45,7 +45,7 @@
 //     ];
 // });
 
-$factory->define('App\User::class', function ($facker) {
+$factory->define(App\User::class, function ($facker) {
     return [
         'name' => $facker->name,
         'email' => $facker->unique()->safeEmail,
@@ -54,7 +54,7 @@ $factory->define('App\User::class', function ($facker) {
     ];
 });
 
-$factory->define('App\Thread::class', function ($facker) {
+$factory->define(App\Thread::class, function ($facker) {
     return [
         'user_id' => function () {
             return factory('App\User')->create()->id;
@@ -64,7 +64,7 @@ $factory->define('App\Thread::class', function ($facker) {
     ];
 });
 
-$factory->define('App\Reply::class', function ($facker) {
+$factory->define(App\Reply::class, function ($facker) {
     return [
         'thread_id' => function () {
             return factory('App\Thread')->create()->id;
